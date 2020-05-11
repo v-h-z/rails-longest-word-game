@@ -2,6 +2,9 @@
   <h1>Result</h1>
   <div class="result">
     <p><%= @result %></p>
+    <p>you played "<%= @played_word %>" on this grid : <%= @word_list %></p>
+    <p>your score is <strong><%= @score %></strong></p>
+    <p>your total score is <%= @total_score %></p>
   </div>
   <%= link_to 'Play again!', new_path %>
 </div>

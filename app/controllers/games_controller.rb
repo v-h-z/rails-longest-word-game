@@ -24,6 +24,15 @@ class GamesController < ApplicationController
               else
                 'this word doesnt exist sorry.. you lost'
               end
+    @word_list = word_list.join(',')
+    @played_word = played_word
+    if @result == 'Bravo! this is correct'
+      @score = played_word.size
+    else
+      @score = 0
+    end
+    cookies[:score] = @score + cookies[:score].to_i
+    @total_score = cookies[:score]
   end
 
   private
