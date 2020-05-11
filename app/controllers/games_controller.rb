@@ -1,6 +1,9 @@
 require 'open-uri'
 
 class GamesController < ApplicationController
+  def index
+  end
+
   def new
     @tirage = []
     10.times { @tirage << ('a'..'z').to_a.sample }
