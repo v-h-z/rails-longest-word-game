@@ -10,21 +10,20 @@ class GamesController < ApplicationController
   def score
     word_list = params[:word_list].split(',')
     played_word = params[:word]
-    p api_resp = find_word(played_word)
+    api_resp = find_word(played_word)
     @result = if api_resp['found'] == true
                 counter = 0
                 played_word.chars.each do |letter|
-                  p letter
                   if word_list.include?(letter)
                     counter += 1
-                    word_list.delete(letter)
+                    word_list.delete_at(word_list.find_index(letter))
                   end
                 end
                 counter == played_word.size ? 'Bravo! this is correct' : 'nope..the word exists but is not included in the chars provided'
               else
                 'this word doesnt exist sorry.. you lost'
               end
-    @word_list = word_list.join(',')
+    @word_list = params[:word_list]
     @played_word = played_word
     if @result == 'Bravo! this is correct'
       @score = played_word.size
